@@ -52,7 +52,7 @@ class Rectangle
         }
         else
         {
-            return null; // No intersection
+            return null; 
         }
     }
 
@@ -103,7 +103,6 @@ class Program
             Console.WriteLine("No intersection.");
         }
 
-        // Saving and loading from JSON
         string filePath = "rectangle.json";
         Rectangle.SaveToJson(rect1, filePath);
         Rectangle loadedRect = Rectangle.LoadFromJson(filePath);
