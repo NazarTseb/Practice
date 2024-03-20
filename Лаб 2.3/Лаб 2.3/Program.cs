@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 class Rectangle
 {
-    public double Length { get; set; }
+    public double Length { get; set; } 
     public double Width { get; set; }
     public double X { get; set; }
     public double Y { get; set; }
@@ -29,7 +29,7 @@ class Rectangle
         Y += deltaY;
     }
 
-    public static Rectangle Union(Rectangle rect1, Rectangle rect2)
+    public Rectangle Union(Rectangle rect1, Rectangle rect2)
     {
         double minX = Math.Min(rect1.X, rect2.X);
         double minY = Math.Min(rect1.Y, rect2.Y);
@@ -39,7 +39,7 @@ class Rectangle
         return new Rectangle(maxX - minX, maxY - minY, minX, minY);
     }
 
-    public static Rectangle Intersection(Rectangle rect1, Rectangle rect2)
+    public Rectangle Intersection(Rectangle rect1, Rectangle rect2)
     {
         double minX = Math.Max(rect1.X, rect2.X);
         double minY = Math.Max(rect1.Y, rect2.Y);
@@ -80,15 +80,15 @@ class Program
         PrintRectangle("Rectangle 1", rect1);
         PrintRectangle("Rectangle 2", rect2);
 
-        rect1.Resize(12, 7);
+        rect1.Resize(12, 6);
         rect2.Move(2, 3);
 
         Console.WriteLine("\nRectangles after modifications:");
         PrintRectangle("Rectangle 1", rect1);
         PrintRectangle("Rectangle 2", rect2);
 
-        Rectangle unionRect = Rectangle.Union(rect1, rect2);
-        Rectangle intersectionRect = Rectangle.Intersection(rect1, rect2);
+        Rectangle unionRect = rect1.Union(rect1, rect2);
+        Rectangle intersectionRect = rect1.Intersection(rect1, rect2);
 
         Console.WriteLine("\nUnion Rectangle:");
         PrintRectangle("Union", unionRect);
