@@ -29,22 +29,22 @@ class Rectangle
         Y += deltaY;
     }
 
-    public Rectangle Union(Rectangle rect1, Rectangle rect2)
+    public Rectangle Union(Rectangle rect)
     {
-        double minX = Math.Min(rect1.X, rect2.X);
-        double minY = Math.Min(rect1.Y, rect2.Y);
-        double maxX = Math.Max(rect1.X + rect1.Length, rect2.X + rect2.Length);
-        double maxY = Math.Max(rect1.Y + rect1.Width, rect2.Y + rect2.Width);
+        double minX = Math.Min(this.X, rect.X);
+        double minY = Math.Min(this.Y, rect.Y);
+        double maxX = Math.Max(this.X + rect.Length, rect.X + rect.Length);
+        double maxY = Math.Max(this.Y + rect.Width, rect.Y + rect.Width);
 
         return new Rectangle(maxX - minX, maxY - minY, minX, minY);
     }
 
-    public Rectangle Intersection(Rectangle rect1, Rectangle rect2)
+    public Rectangle Intersection(Rectangle rect)
     {
-        double minX = Math.Max(rect1.X, rect2.X);
-        double minY = Math.Max(rect1.Y, rect2.Y);
-        double maxX = Math.Min(rect1.X + rect1.Length, rect2.X + rect2.Length);
-        double maxY = Math.Min(rect1.Y + rect1.Width, rect2.Y + rect2.Width);
+        double minX = Math.Max(this.X, rect.X);
+        double minY = Math.Max(this.Y, rect.Y);
+        double maxX = Math.Min(this.X + rect.Length, rect.X + rect.Length);
+        double maxY = Math.Min(this.Y + rect.Width, rect.Y + rect.Width);
 
         if (maxX > minX && maxY > minY)
         {
@@ -52,9 +52,11 @@ class Rectangle
         }
         else
         {
-            return null; 
+            return null;
         }
     }
+
+    
 
     public static void SaveToJson(Rectangle rectangle, string filePath)
     {
@@ -69,53 +71,54 @@ class Rectangle
     }
 }
 
-class Program
-{
-    static void Main()
+
+    class Program
     {
-        Rectangle rect1 = new Rectangle(10, 5, 0, 0);
-        Rectangle rect2 = new Rectangle(8, 6, 3, 2);
-
-        Console.WriteLine("Initial Rectangles:");
-        PrintRectangle("Rectangle 1", rect1);
-        PrintRectangle("Rectangle 2", rect2);
-
-        rect1.Resize(12, 6);
-        rect2.Move(2, 3);
-
-        Console.WriteLine("\nRectangles after modifications:");
-        PrintRectangle("Rectangle 1", rect1);
-        PrintRectangle("Rectangle 2", rect2);
-
-        Rectangle unionRect = rect1.Union(rect1, rect2);
-        Rectangle intersectionRect = rect1.Intersection(rect1, rect2);
-
-        Console.WriteLine("\nUnion Rectangle:");
-        PrintRectangle("Union", unionRect);
-
-        Console.WriteLine("\nIntersection Rectangle:");
-        if (intersectionRect != null)
+        static void Main()
         {
-            PrintRectangle("Intersection", intersectionRect);
+            Rectangle rect1 = new Rectangle(10, 5, 0, 0);
+            Rectangle rect2 = new Rectangle(8, 6, 3, 2);
+            Rectangle unionRect = rect1.Union(rect2);
+            Rectangle intersectionRect = rect1.Intersection(rect2);
+            Console.WriteLine("Initial Rectangles:");
+            PrintRectangle("Rectangle 1", rect1);
+            PrintRectangle("Rectangle 2", rect2);
+
+            rect1.Resize(12, 6);
+            rect2.Move(2, 3);
+
+            Console.WriteLine("\nRectangles after modifications:");
+            PrintRectangle("Rectangle 1", rect1);
+            PrintRectangle("Rectangle 2", rect2);
+
+
+
+            Console.WriteLine("\nUnion Rectangle:");
+            PrintRectangle("Union", unionRect);
+
+            Console.WriteLine("\nIntersection Rectangle:");
+            if (intersectionRect != null)
+            {
+                PrintRectangle("Intersection", intersectionRect);
+            }
+            else
+            {
+                Console.WriteLine("No intersection.");
+            }
+
+            string filePath = "rectangle.json";
+            Rectangle.SaveToJson(rect1, filePath);
+            Rectangle loadedRect = Rectangle.LoadFromJson(filePath);
+
+            Console.WriteLine("\nLoaded Rectangle from JSON:");
+            PrintRectangle("Loaded Rectangle", loadedRect);
         }
-        else
+
+        static void PrintRectangle(string name, Rectangle rectangle)
         {
-            Console.WriteLine("No intersection.");
+            Console.WriteLine($"{name}: (Length: {rectangle.Length}, Width: {rectangle.Width}, X: {rectangle.X}, Y: {rectangle.Y})");
         }
-
-        string filePath = "rectangle.json";
-        Rectangle.SaveToJson(rect1, filePath);
-        Rectangle loadedRect = Rectangle.LoadFromJson(filePath);
-
-        Console.WriteLine("\nLoaded Rectangle from JSON:");
-        PrintRectangle("Loaded Rectangle", loadedRect);
     }
-
-    static void PrintRectangle(string name, Rectangle rectangle)
-    {
-        Console.WriteLine($"{name}: (Length: {rectangle.Length}, Width: {rectangle.Width}, X: {rectangle.X}, Y: {rectangle.Y})");
-    }
-}
 
 
 
