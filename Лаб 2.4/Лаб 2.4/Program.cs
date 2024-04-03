@@ -7,7 +7,27 @@ class Button
     {
         Console.WriteLine("Клавіша натиснута.");
     }
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null  || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public override string ToString()
+    {
+        return "Button1";
+    }
 }
+
 
 
 class Pedal
@@ -15,6 +35,25 @@ class Pedal
     public void Press()
     {
         Console.WriteLine("Педаль натиснута.");
+    }
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public override string ToString()
+    {
+        return "Pedal1";
     }
 }
 
