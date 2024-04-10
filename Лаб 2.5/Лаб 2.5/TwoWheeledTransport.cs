@@ -1,6 +1,6 @@
 ﻿class TwoWheeledTransport : Transport
 {
-    public TwoWheeledTransport(string type, int passengerCapacity, double cargoCapacity, int price, int speed)
+    public TwoWheeledTransport(string type, int passengerCapacity, int cargoCapacity, int price, int speed)
         : base(type, passengerCapacity, cargoCapacity, price, speed)
     {
     }

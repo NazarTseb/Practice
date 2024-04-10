@@ -1,7 +1,7 @@
 ﻿class Train : Transport
 {
     public int Beds {  get; set; }
-    public Train(string type, int passengerCapacity, double cargoCapacity, int price, int speed)
+    public Train(string type, int passengerCapacity, int cargoCapacity, int price, int speed)
         : base(type, passengerCapacity, cargoCapacity, price, speed)
     {
     }

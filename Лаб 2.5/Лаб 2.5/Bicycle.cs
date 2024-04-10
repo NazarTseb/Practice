@@ -1,7 +1,7 @@
 ﻿class Bicycle : TwoWheeledTransport
 {
     public string Chain {  get; set; }
-    public Bicycle(string type, int passengerCapacity, double cargoCapacity, int price, int speed)
+    public Bicycle(string type, int passengerCapacity, int cargoCapacity, int price, int speed)
         : base(type, passengerCapacity, cargoCapacity, price, speed)
     {
     }

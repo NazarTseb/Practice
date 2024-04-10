@@ -3,12 +3,12 @@
 
     public string Type { get; set; }
     public int PassengersAmmount { get; set; }
-    public double CargoCapacity { get; set; }
+    public int CargoCapacity { get; set; }
     public int Price { get; set; }
     public int Speed { get; set; }
 
 
-    public Transport(string type, int passengerCapacity, double cargoCapacity, int price, int speed)
+    public Transport(string type, int passengerCapacity, int cargoCapacity, int price, int speed)
     {
         Type = type;
         PassengersAmmount = passengerCapacity;

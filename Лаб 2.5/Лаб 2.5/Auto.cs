@@ -1,7 +1,7 @@
 ﻿class Auto : Transport
 {
     public string SpareWheels { get; set; }
-    public Auto(string type, int passengerCapacity, double cargoCapacity, int price, int speed)
+    public Auto(string type, int passengerCapacity, int cargoCapacity, int price, int speed)
         : base(type, passengerCapacity, cargoCapacity, price, speed)
     {
     }
